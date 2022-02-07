@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-pod
+  namespace: redis-pod
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: redis-pod
+  template:
+    metadata:
+      labels:
+        app: redis-pod
+    spec:
+      containers:
+      - name: rediscontainer
+        image: kishan133/redis
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 6379
